@@ -9,5 +9,9 @@ actual fun getUserHomeDirectory(): Path {
 }
 
 actual fun getSphinxDirectory(): Path {
-    return getUserHomeDirectory().resolve(".sphinx")
+    var dir = System.getenv("SPHINX_CONFIG_DIR")
+    if (dir == null) {
+        dir = ".sphinx"
+    }
+    return getUserHomeDirectory().resolve(dir)
 }
